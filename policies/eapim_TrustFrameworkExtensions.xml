@@ -1,4 +1,13 @@
-<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="{{Tenant_Name}}" PolicyId="B2C_1A_eapim_TrustFrameworkExtensions" PublicPolicyUri="http://{{Tenant_Name}}/B2C_1A_eapim_TrustFrameworkExtensions" TenantObjectId="{{Tenant_Id}}">
+<?xml version="1.0" encoding="utf-8" ?>
+<TrustFrameworkPolicy 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" 
+  PolicySchemaVersion="0.3.0.0" 
+  TenantId="{{Tenant_Name}}" 
+  PolicyId="B2C_1A_eapim_TrustFrameworkExtensions" 
+  PublicPolicyUri="http://{{Tenant_Name}}/B2C_1A_eapim_TrustFrameworkExtensions">
+  
   <BasePolicy>
     <TenantId>{{Tenant_Id}}</TenantId>
     <PolicyId>B2C_1A_eapim_TrustFrameworkBase</PolicyId>
