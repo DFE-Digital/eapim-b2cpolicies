@@ -9,7 +9,7 @@
   PublicPolicyUri="http://{{Tenant_Name}}/B2C_1A_eapim_TrustFrameworkExtensions">
   
   <BasePolicy>
-    <TenantId>{{Tenant_Id}}</TenantId>
+    <TenantId>{{Tenant_Name}}</TenantId>
     <PolicyId>B2C_1A_eapim_TrustFrameworkBase</PolicyId>
   </BasePolicy>
   <BuildingBlocks>
