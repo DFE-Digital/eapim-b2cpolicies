@@ -311,7 +311,7 @@
         </Metadata>
       </ContentDefinition>
       <ContentDefinition Id="api.signuporsignin">
-        <LoadUri>https://Portal_Url/static/azuresignin.html</LoadUri>
+        <LoadUri>https://{{Portal_Url}}/static/azuresignin.html</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:unifiedssp:1.2.0</DataUri>
         <Metadata>
@@ -319,7 +319,7 @@
         </Metadata>
       </ContentDefinition>
       <ContentDefinition Id="api.selfasserted">
-        <LoadUri>https://Portal_Url/static/azuresignin.html</LoadUri>
+        <LoadUri>https://{{Portal_Url}}/static/azuresignin.html</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:1.2.0</DataUri>
         <Metadata>
@@ -327,7 +327,7 @@
         </Metadata>
       </ContentDefinition>
       <ContentDefinition Id="api.selfasserted.profileupdate">
-        <LoadUri>https://Portal_Url/static/azureeditprofile.html</LoadUri>
+        <LoadUri>https://{{Portal_Url}}/static/azureeditprofile.html</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:1.2.0</DataUri>
         <Metadata>
@@ -335,7 +335,7 @@
         </Metadata>
       </ContentDefinition>
       <ContentDefinition Id="api.localaccountsignup">
-        <LoadUri>https://Portal_Url/static/azuresignup.html</LoadUri>
+        <LoadUri>https://{{Portal_Url}}/static/azuresignup.html</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:1.2.0</DataUri>
         <Metadata>
@@ -343,7 +343,7 @@
         </Metadata>
       </ContentDefinition>
       <ContentDefinition Id="api.localaccountpasswordreset">
-        <LoadUri>https://Portal_Url/static/azurepasswordreset.html</LoadUri>
+        <LoadUri>https://{{Portal_Url}}/static/azurepasswordreset.html</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:1.2.0</DataUri>
         <Metadata>
