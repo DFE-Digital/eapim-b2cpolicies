@@ -20,12 +20,6 @@
         <UserHelpText>Provide your Organization Name</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
-      <ClaimType Id="extension_Role">
-        <DisplayName>User Role</DisplayName>
-        <DataType>string</DataType>
-        <UserHelpText>Provide your user role details</UserHelpText>
-        <UserInputType>TextBox</UserInputType>
-      </ClaimType>
       <ClaimType Id="strongAuthenticationPhoneNumber">
         <DisplayName>Phone Number</DisplayName>
         <DataType>string</DataType>
@@ -81,7 +75,6 @@
         <TechnicalProfile Id="AAD-UserReadUsingObjectId">
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="extension_OrganizationName" />
-            <OutputClaim ClaimTypeReferenceId="extension_Role" />
             <OutputClaim ClaimTypeReferenceId="strongAuthenticationPhoneNumber" />
             <!-- <OutputClaim ClaimTypeReferenceId="signInNames.emailAddress" />  -->
           </OutputClaims>
@@ -95,20 +88,17 @@
             <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
             <OutputClaim ClaimTypeReferenceId="authenticationSource" />
             <OutputClaim ClaimTypeReferenceId="newUser" />
-            <!-- <OutputClaim ClaimTypeReferenceId="displayName" Required="true" /> -->
             <OutputClaim ClaimTypeReferenceId="givenName" Required="true" />
             <OutputClaim ClaimTypeReferenceId="surName" Required="true" />
             <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
             <OutputClaim ClaimTypeReferenceId="newPassword" Required="true" />
             <OutputClaim ClaimTypeReferenceId="reenterPassword" Required="true" />
             <OutputClaim ClaimTypeReferenceId="extension_OrganizationName" Required="true" />
-            <!-- <OutputClaim ClaimTypeReferenceId="extension_Role" Required="true" /> -->
           </OutputClaims>
         </TechnicalProfile>
         <TechnicalProfile Id="AAD-UserWriteUsingLogonEmail">
           <PersistedClaims>
             <PersistedClaim ClaimTypeReferenceId="extension_OrganizationName" />
-            <PersistedClaim ClaimTypeReferenceId="extension_Role" />
           </PersistedClaims>
         </TechnicalProfile>
         <TechnicalProfile Id="AAD-UserWriteProfileUsingObjectId">
@@ -116,7 +106,6 @@
             <PersistedClaim ClaimTypeReferenceId="givenName" />
             <PersistedClaim ClaimTypeReferenceId="surName" />
             <PersistedClaim ClaimTypeReferenceId="extension_OrganizationName" />
-            <PersistedClaim ClaimTypeReferenceId="extension_Role" />
           </PersistedClaims>
         </TechnicalProfile>
       </TechnicalProfiles>
@@ -160,13 +149,11 @@
             <InputClaim ClaimTypeReferenceId="givenName" />
             <InputClaim ClaimTypeReferenceId="surname" />
             <InputClaim ClaimTypeReferenceId="extension_OrganizationName" />
-            <InputClaim ClaimTypeReferenceId="extension_Role" />
           </InputClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="givenName" />
             <OutputClaim ClaimTypeReferenceId="surname" />
             <OutputClaim ClaimTypeReferenceId="extension_OrganizationName" />
-            <OutputClaim ClaimTypeReferenceId="extension_Role" />
           </OutputClaims>
         </TechnicalProfile>
         <!-- This technical profile uses a validation technical profile to authenticate the user. -->

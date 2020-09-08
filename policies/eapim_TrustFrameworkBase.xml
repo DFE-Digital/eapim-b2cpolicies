@@ -20,12 +20,6 @@
         <UserHelpText>Provide your Organization Name</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
-      <ClaimType Id="extension_Role">
-        <DisplayName>User Role</DisplayName>
-        <DataType>string</DataType>
-        <UserHelpText>Provide your user role details</UserHelpText>
-        <UserInputType>TextBox</UserInputType>
-      </ClaimType>
       <ClaimType Id="socialIdpUserId">
         <DisplayName>Username</DisplayName>
         <DataType>string</DataType>
