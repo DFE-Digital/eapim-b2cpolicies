@@ -15,9 +15,9 @@
            claims provider for credential storage which will have its own restrictions. -->
       <!-- SECTION I: Claims required for user journeys to work properly -->
       <ClaimType Id="extension_OrganizationName">
-        <DisplayName>Organization Name</DisplayName>
+        <DisplayName>Organisation Name</DisplayName>
         <DataType>string</DataType>
-        <UserHelpText>Provide your Organization Name</UserHelpText>
+        <UserHelpText>Provide your Organisation Name</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
       <ClaimType Id="socialIdpUserId">
@@ -78,7 +78,7 @@
            The UI validates that the user correctly re-entered their password during account creation based on these 
            claim types.	  -->
       <ClaimType Id="newPassword">
-        <DisplayName>New Password</DisplayName>
+        <DisplayName>Create a password</DisplayName>
         <DataType>string</DataType>
         <UserHelpText>Enter new password</UserHelpText>
         <UserInputType>Password</UserInputType>
@@ -101,7 +101,7 @@
 
       -->
       <ClaimType Id="reenterPassword">
-        <DisplayName>Confirm New Password</DisplayName>
+        <DisplayName>Confirm Password</DisplayName>
         <DataType>string</DataType>
         <UserHelpText>Confirm new password</UserHelpText>
         <UserInputType>Password</UserInputType>
@@ -164,7 +164,7 @@
         <UserHelpText>Email address that can be used to contact you.</UserHelpText>
         <UserInputType>TextBox</UserInputType>
         <Restriction>
-          <Pattern RegularExpression="^(([^\s@“]+(\.[^\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$" HelpText="Please enter a valid email address." />
+          <Pattern RegularExpression="^(([^\s@?]+(\.[^\s@?]+)*)|(.+?))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$" HelpText="Please enter a valid email address." />
         </Restriction>
       </ClaimType>
       <ClaimType Id="otherMails">
