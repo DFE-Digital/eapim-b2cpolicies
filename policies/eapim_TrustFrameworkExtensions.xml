@@ -15,9 +15,9 @@
   <BuildingBlocks>
     <ClaimsSchema>
       <ClaimType Id="extension_OrganizationName">
-        <DisplayName>Organization Name</DisplayName>
+        <DisplayName>Organisation Name</DisplayName>
         <DataType>string</DataType>
-        <UserHelpText>Provide your Organization Name</UserHelpText>
+        <UserHelpText>Provide your Organisation Name</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
       <ClaimType Id="strongAuthenticationPhoneNumber">
