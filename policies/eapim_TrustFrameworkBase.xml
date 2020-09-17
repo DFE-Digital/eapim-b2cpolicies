@@ -15,7 +15,7 @@
            claims provider for credential storage which will have its own restrictions. -->
       <!-- SECTION I: Claims required for user journeys to work properly -->
       <ClaimType Id="extension_OrganizationName">
-        <DisplayName>Organisation Name</DisplayName>
+        <DisplayName>Organisation</DisplayName>
         <DataType>string</DataType>
         <UserHelpText>Provide your Organisation Name</UserHelpText>
         <UserInputType>TextBox</UserInputType>
@@ -57,7 +57,7 @@
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
       <ClaimType Id="signInNames.emailAddress">
-        <DisplayName>Email Address</DisplayName>
+        <DisplayName>Email address</DisplayName>
         <DataType>string</DataType>
         <UserHelpText>Email address to use for signing in.</UserHelpText>
         <UserInputType>TextBox</UserInputType>
@@ -101,7 +101,7 @@
 
       -->
       <ClaimType Id="reenterPassword">
-        <DisplayName>Confirm Password</DisplayName>
+        <DisplayName>Confirm password</DisplayName>
         <DataType>string</DataType>
         <UserHelpText>Confirm new password</UserHelpText>
         <UserInputType>Password</UserInputType>
@@ -156,7 +156,7 @@
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
       <ClaimType Id="email">
-        <DisplayName>Email Address</DisplayName>
+        <DisplayName>Email address</DisplayName>
         <DataType>string</DataType>
         <DefaultPartnerClaimTypes>
           <Protocol Name="OpenIdConnect" PartnerClaimType="email" />
@@ -230,7 +230,7 @@
       </ClaimType>
       <!-- SECTION III: Additional claims that can be collected from the users, stored in the directory, and sent in the token. Add additional claims here. -->
       <ClaimType Id="givenName">
-        <DisplayName>Given Name</DisplayName>
+        <DisplayName>Given name</DisplayName>
         <DataType>string</DataType>
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="given_name" />
