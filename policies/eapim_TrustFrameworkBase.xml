@@ -335,6 +335,9 @@
         <Metadata>
           <Item Key="DisplayName">Local account sign up page</Item>
         </Metadata>
+        <LocalizedResourcesReferences MergeBehavior="Prepend">
+          <LocalizedResourcesReference Language="en" LocalizedResourcesReferenceId="api.localaccountsignup.en" />
+        </LocalizedResourcesReferences>
       </ContentDefinition>
       <ContentDefinition Id="api.localaccountpasswordreset">
         <LoadUri>https://{{Portal_Url}}/static/azurepasswordreset.html</LoadUri>
@@ -345,6 +348,17 @@
         </Metadata>
       </ContentDefinition>
     </ContentDefinitions>
+    <Localization Enabled="true">
+      <SupportedLanguages DefaultLanguage="en" MergeBehavior="ReplaceAll">
+        <SupportedLanguage>en</SupportedLanguage>
+      </SupportedLanguages>
+      <LocalizedResources Id="api.localaccountsignup.en">
+        <LocalizedStrings>
+          <LocalizedString ElementType="UxElement" StringId="required_field">Please enter your {ClaimType}</LocalizedString>
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfMissingRequiredElement">Please enter your {0}</LocalizedString>
+        </LocalizedStrings>
+      </LocalizedResources>
+    </Localization>
   </BuildingBlocks>
   <!--
         A list of all the claim providers that can be used in the technical policies. If a claims provider is not listed 
