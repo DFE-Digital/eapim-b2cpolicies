@@ -15,7 +15,7 @@
   <BuildingBlocks>
     <ClaimsSchema>
       <ClaimType Id="extension_OrganizationName">
-        <DisplayName>Organisation Name</DisplayName>
+        <DisplayName>Organisation</DisplayName>
         <DataType>string</DataType>
         <UserHelpText>Provide your Organisation Name</UserHelpText>
         <UserInputType>TextBox</UserInputType>
@@ -81,7 +81,7 @@
         </TechnicalProfile>
         <TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">
           <Metadata>
-            <Item Key="EnforceEmailVerification">true</Item>
+            <Item Key="EnforceEmailVerification">false</Item>
           </Metadata>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="objectId" />
@@ -184,6 +184,13 @@
       </TechnicalProfiles>
     </ClaimsProvider>
     <ClaimsProvider>
+    <!--
+      Email verification bypass
+      Email verification metadata items:
+      <Item Key="allowTestEmailAddressPassThrough">true</Item>
+      <Item Key="testEmailAddress">test@contoso.com</Item>
+      <Item Key="testCode">123456</Item>    
+      -->
       <DisplayName>PhoneFactor</DisplayName>
       <TechnicalProfiles>
         <TechnicalProfile Id="PhoneFactor-InputOrVerify">
@@ -258,7 +265,7 @@
             <ClaimsExchange Id="AADUserReadWithObjectId" TechnicalProfileReferenceId="AAD-UserReadUsingObjectId" />
           </ClaimsExchanges>
         </OrchestrationStep>
-        <OrchestrationStep Order="3" Type="ClaimsExchange">
+        <!-- <OrchestrationStep Order="3" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
               <Value>isActiveMFASession</Value>
@@ -269,9 +276,6 @@
             <ClaimsExchange Id="PhoneFactor-Verify" TechnicalProfileReferenceId="PhoneFactor-InputOrVerify" />
           </ClaimsExchanges>
         </OrchestrationStep>
-        <!-- Save MFA phone number: The precondition verifies whether the user provided a new number in the 
-             previous step. If so, then the phone number is stored in the directory for future authentication 
-             requests. -->
         <OrchestrationStep Order="4" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="false">
@@ -282,8 +286,8 @@
           <ClaimsExchanges>
             <ClaimsExchange Id="AADUserWriteWithObjectId" TechnicalProfileReferenceId="AAD-UserWritePhoneNumberUsingObjectId" />
           </ClaimsExchanges>
-        </OrchestrationStep>
-        <OrchestrationStep Order="5" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
+        </OrchestrationStep> -->
+        <OrchestrationStep Order="3" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
       </OrchestrationSteps>
       <ClientDefinition ReferenceId="DefaultWeb" />
     </UserJourney>
@@ -303,7 +307,7 @@
         <!-- ask the user to enrol into MFA -->
         <!-- Phone verification: If MFA is not required, the next three steps (#5-#7) should be removed.
              This step checks whether there's a phone number on record,  for the user. If found, then the user is challenged to verify it. -->
-        <OrchestrationStep Order="3" Type="ClaimsExchange">
+        <!-- <OrchestrationStep Order="3" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
               <Value>isActiveMFASession</Value>
@@ -314,9 +318,6 @@
             <ClaimsExchange Id="PhoneFactor-Verify" TechnicalProfileReferenceId="PhoneFactor-InputOrVerify" />
           </ClaimsExchanges>
         </OrchestrationStep>
-        <!-- Save MFA phone number: The precondition verifies whether the user provided a new number in the 
-             previous step. If so, then the phone number is stored in the directory for future authentication 
-             requests. -->
         <OrchestrationStep Order="4" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="false">
@@ -327,8 +328,8 @@
           <ClaimsExchanges>
             <ClaimsExchange Id="AADUserWriteWithObjectId" TechnicalProfileReferenceId="AAD-UserWritePhoneNumberUsingObjectId" />
           </ClaimsExchanges>
-        </OrchestrationStep>
-        <OrchestrationStep Order="5" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
+        </OrchestrationStep> -->
+        <OrchestrationStep Order="3" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
       </OrchestrationSteps>
       <ClientDefinition ReferenceId="DefaultWeb" />
     </UserJourney>
