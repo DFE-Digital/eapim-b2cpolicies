@@ -80,10 +80,10 @@
       <ClaimType Id="newPassword">
         <DisplayName>Create a password</DisplayName>
         <DataType>string</DataType>
-        <UserHelpText>Enter new password</UserHelpText>
+        <UserHelpText>The password must be between 8 and 16 chacarters, contain at least 1 uppercase character, and at least 1 number or special character. Special characters include: @.#$%^&amp;*-_+=[]{}|\:',?`~();!</UserHelpText>
         <UserInputType>Password</UserInputType>
         <Restriction>
-          <Pattern RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" />
+          <Pattern RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" HelpText="The password you provided is not valid. It must be between 8 and 16 chacarters, contain at least 1 uppercase character, and at least 1 number or special character. Special characters include: @#$%^&amp;*-_+=[]{}|\:',?`~();!." />
         </Restriction>
       </ClaimType>
       <!-- The password regular expression above is constructed for AAD passwords based on restrictions at https://msdn.microsoft.com/en-us/library/azure/jj943764.aspx
@@ -106,7 +106,7 @@
         <UserHelpText>Confirm new password</UserHelpText>
         <UserInputType>Password</UserInputType>
         <Restriction>
-          <Pattern RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" HelpText=" " />
+          <Pattern RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" HelpText="The password you provided is not valid. It must be between 8 and 16 chacarters, contain at least 1 uppercase character, and at least 1 number or special character. Special characters include: @#$%^&amp;*-_+=[]{}|\:',?`~();!." />
         </Restriction>
       </ClaimType>
       <ClaimType Id="passwordPolicies">
