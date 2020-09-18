@@ -517,6 +517,9 @@
             <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
           </Metadata>
           <IncludeInSso>false</IncludeInSso>
+          <InputClaimsTransformations>
+            <InputClaimsTransformation ReferenceId="CreateDisplayNameFromFirstNameAndLastName" />
+          </InputClaimsTransformations>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="objectId" Required="true" />
           </InputClaims>
