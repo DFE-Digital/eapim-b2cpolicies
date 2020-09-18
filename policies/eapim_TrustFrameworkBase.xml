@@ -517,9 +517,6 @@
             <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
           </Metadata>
           <IncludeInSso>false</IncludeInSso>
-          <InputClaimsTransformations>
-            <InputClaimsTransformation ReferenceId="CreateDisplayNameFromFirstNameAndLastName" />
-          </InputClaimsTransformations>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="objectId" Required="true" />
           </InputClaims>
@@ -564,6 +561,9 @@
             <Item Key="ContentDefinitionReferenceId">api.selfasserted.profileupdate</Item>
           </Metadata>
           <IncludeInSso>false</IncludeInSso>
+          <InputClaimsTransformations>
+            <InputClaimsTransformation ReferenceId="CreateDisplayNameFromFirstNameAndLastName" />
+          </InputClaimsTransformations>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="userPrincipalName" />
             <!-- Optional claims. These claims are collected from the user and can be modified. Any claim added here should be updated in the
