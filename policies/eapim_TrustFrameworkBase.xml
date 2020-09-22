@@ -366,7 +366,7 @@
       </SupportedLanguages>
       <LocalizedResources Id="api.localaccountsignup.en">
         <LocalizedStrings>
-          <!-- <LocalizedString ElementType="UxElement" StringId="required_field">Please enter your {ClaimType}</LocalizedString> -->
+          <LocalizedString ElementType="UxElement" StringId="required_field">Please enter your {ClaimType}</LocalizedString>
           <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfMissingRequiredElement">Please enter your {0}</LocalizedString>
         </LocalizedStrings>
       </LocalizedResources>
