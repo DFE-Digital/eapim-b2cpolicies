@@ -230,25 +230,25 @@
       </ClaimType>
       <!-- SECTION III: Additional claims that can be collected from the users, stored in the directory, and sent in the token. Add additional claims here. -->
       <ClaimType Id="givenName">
-        <DisplayName>Given name</DisplayName>
+        <DisplayName>First name</DisplayName>
         <DataType>string</DataType>
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="given_name" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="given_name" />
           <Protocol Name="SAML2" PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname" />
         </DefaultPartnerClaimTypes>
-        <UserHelpText>Your given name (also known as first name).</UserHelpText>
+        <UserHelpText>Your first name.</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
       <ClaimType Id="surname">
-        <DisplayName>Surname</DisplayName>
+        <DisplayName>Last name</DisplayName>
         <DataType>string</DataType>
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="family_name" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="family_name" />
           <Protocol Name="SAML2" PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname" />
         </DefaultPartnerClaimTypes>
-        <UserHelpText>Your surname (also known as family name or last name).</UserHelpText>
+        <UserHelpText>Your last name.</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
     </ClaimsSchema>
