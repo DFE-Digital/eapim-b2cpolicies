@@ -134,12 +134,12 @@
         </Metadata>
       </ContentDefinition>-->
       <ContentDefinition Id="api.selfasserted">
-        <LoadUri>https://c106d01-eapim-external-portal-app.azurewebsites.net/static/azuresigninverify.html</LoadUri>
+        <LoadUri>{{Portal_Url}}/static/azuresigninverify.html</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.0.0</DataUri>
       </ContentDefinition>
       <!-- <ContentDefinition Id="api.signinverify">
-        <LoadUri>https://c106d01-eapim-external-portal-app.azurewebsites.net/static/azuresigninverify.html</LoadUri>
+        <LoadUri>{{Portal_Url}}/static/azuresigninverify.html</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:unifiedssp:1.2.0</DataUri>
       </ContentDefinition> -->
