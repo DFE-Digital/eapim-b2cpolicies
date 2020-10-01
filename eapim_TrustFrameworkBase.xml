@@ -335,7 +335,7 @@
           <Item Key="DisplayName">Local account sign up page</Item>
         </Metadata>
         <LocalizedResourcesReferences MergeBehavior="Prepend">
-          <LocalizedResourcesReference Language="en" LocalizedResourcesReferenceId="api.localaccountsignup.en" />
+          <LocalizedResourcesReference Language="en" LocalizedResourcesReferenceId="api.requiredfields.en" />
         </LocalizedResourcesReferences>
       </ContentDefinition>
       <ContentDefinition Id="api.localaccountpasswordreset">
@@ -351,7 +351,7 @@
       <SupportedLanguages DefaultLanguage="en" MergeBehavior="ReplaceAll">
         <SupportedLanguage>en</SupportedLanguage>
       </SupportedLanguages>
-      <LocalizedResources Id="api.localaccountsignup.en">
+      <LocalizedResources Id="api.requiredfields.en">
         <LocalizedStrings>
           <LocalizedString ElementType="UxElement" StringId="required_field">Enter your {ClaimType}</LocalizedString>
           <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfMissingRequiredElement">Please enter your {0}</LocalizedString>
