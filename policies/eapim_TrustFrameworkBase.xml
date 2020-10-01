@@ -86,20 +86,7 @@
           <Pattern RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" HelpText="The password you provided is not valid. It must be between 8 and 16 chacarters, contain at least 1 uppercase character, and at least 1 number or special character. Special characters include: @.#$%^&amp;*-_+=[]{}|\:',?`~();!" />
         </Restriction>
       </ClaimType>
-      <!-- The password regular expression above is constructed for AAD passwords based on restrictions at https://msdn.microsoft.com/en-us/library/azure/jj943764.aspx
-
-        ^( # one of the following four combinations must appear in the password
-         (?=.*[a-z])(?=.*[A-Z])(?=.*\d) |            # matches lower case, upper case or digit
-         (?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]) |  # matches lower case, upper case or special character (i.e. non-alpha or digit)
-         (?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]) |     # matches lower case, digit, or special character
-         (?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])       # matches upper case, digit, or special character
-        )
-        ( # The password must match the following restrictions
-         [A-Za-z\d@#$%^&*\-_+=[\]{}|\\:',?/`~"();!] |   # The list of all acceptable characters (without .)
-         \.(?!@)                                        # or . can appear as long as not followed by @
-        ) {8,16}$                                       # the length must be between 8 and 16 chars inclusive
-
-      -->
+      <!-- The password regular expression above is constructed for AAD passwords based on restrictions at https://msdn.microsoft.com/en-us/library/azure/jj943764.aspx          ^( # one of the following four combinations must appear in the password          (?=.*[a-z])(?=.*[A-Z])(?=.*\d) |            # matches lower case, upper case or digit          (?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]) |  # matches lower case, upper case or special character (i.e. non-alpha or digit)          (?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]) |     # matches lower case, digit, or special character          (?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])       # matches upper case, digit, or special character         )         ( # The password must match the following restrictions          [A-Za-z\d@#$%^&*\-_+=[\]{}|\\:',?/`~"();!] |   # The list of all acceptable characters (without .)          \.(?!@)                                        # or . can appear as long as not followed by @         ) {8,16}$                                       # the length must be between 8 and 16 chars inclusive        -->
       <ClaimType Id="reenterPassword">
         <DisplayName>Confirm password</DisplayName>
         <DataType>string</DataType>
@@ -230,25 +217,25 @@
       </ClaimType>
       <!-- SECTION III: Additional claims that can be collected from the users, stored in the directory, and sent in the token. Add additional claims here. -->
       <ClaimType Id="givenName">
-        <DisplayName>First name</DisplayName>
+        <DisplayName>Given name</DisplayName>
         <DataType>string</DataType>
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="given_name" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="given_name" />
           <Protocol Name="SAML2" PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname" />
         </DefaultPartnerClaimTypes>
-        <UserHelpText>Your first name.</UserHelpText>
+        <UserHelpText>Your given name (also known as first name).</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
       <ClaimType Id="surname">
-        <DisplayName>Last name</DisplayName>
+        <DisplayName>Surname</DisplayName>
         <DataType>string</DataType>
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="family_name" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="family_name" />
           <Protocol Name="SAML2" PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname" />
         </DefaultPartnerClaimTypes>
-        <UserHelpText>Your last name.</UserHelpText>
+        <UserHelpText>Your surname (also known as family name or last name).</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
     </ClaimsSchema>
@@ -372,10 +359,7 @@
       </LocalizedResources>
     </Localization>
   </BuildingBlocks>
-  <!--
-        A list of all the claim providers that can be used in the technical policies. If a claims provider is not listed 
-        in this section, then it cannot be used in a technical policy.
-    -->
+  <!--         A list of all the claim providers that can be used in the technical policies. If a claims provider is not listed          in this section, then it cannot be used in a technical policy.     -->
   <ClaimsProviders>
     <ClaimsProvider>
       <DisplayName>Local Account SignIn</DisplayName>
@@ -620,9 +604,9 @@
             <OutputClaim ClaimTypeReferenceId="givenName" />
             <OutputClaim ClaimTypeReferenceId="surName" />
           </OutputClaims>
-          <ValidationTechnicalProfiles>
+          <!--<ValidationTechnicalProfiles>
             <ValidationTechnicalProfile ReferenceId="AAD-UserWriteUsingLogonEmail" />
-          </ValidationTechnicalProfiles>
+          </ValidationTechnicalProfiles>-->
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-AAD" />
         </TechnicalProfile>
         <!-- This technical profile uses a validation technical profile to authenticate the user. -->
