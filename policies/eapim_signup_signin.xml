@@ -14,11 +14,9 @@
       <Protocol Name="OpenIdConnect" />
       <OutputClaims>
         <OutputClaim ClaimTypeReferenceId="signInNames.emailAddress" />
-        <OutputClaim ClaimTypeReferenceId="displayName" />
         <OutputClaim ClaimTypeReferenceId="givenName" />
         <OutputClaim ClaimTypeReferenceId="surname" />
         <OutputClaim ClaimTypeReferenceId="extension_OrganizationName" />
-        <OutputClaim ClaimTypeReferenceId="extension_Role" />
         <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub" />
         <OutputClaim ClaimTypeReferenceId="tenantId" AlwaysUseDefaultValue="true" DefaultValue="{Policy:TenantObjectId}" />
       </OutputClaims>

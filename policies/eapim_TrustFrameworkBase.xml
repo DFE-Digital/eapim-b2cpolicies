@@ -15,15 +15,9 @@
            claims provider for credential storage which will have its own restrictions. -->
       <!-- SECTION I: Claims required for user journeys to work properly -->
       <ClaimType Id="extension_OrganizationName">
-        <DisplayName>Organization Name</DisplayName>
+        <DisplayName>Organisation</DisplayName>
         <DataType>string</DataType>
-        <UserHelpText>Provide your Organization Name</UserHelpText>
-        <UserInputType>TextBox</UserInputType>
-      </ClaimType>
-      <ClaimType Id="extension_Role">
-        <DisplayName>User Role</DisplayName>
-        <DataType>string</DataType>
-        <UserHelpText>Provide your user role details</UserHelpText>
+        <UserHelpText>Provide your Organisation Name</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
       <ClaimType Id="socialIdpUserId">
@@ -84,35 +78,22 @@
            The UI validates that the user correctly re-entered their password during account creation based on these 
            claim types.	  -->
       <ClaimType Id="newPassword">
-        <DisplayName>New Password</DisplayName>
+        <DisplayName>Create a password</DisplayName>
         <DataType>string</DataType>
-        <UserHelpText>Enter new password</UserHelpText>
+        <UserHelpText>The password must be between 8 and 16 chacarters, contain at least 1 uppercase character, and at least 1 number or special character. Special characters include: @.#$%^&amp;*-_+=[]{}|\:',?`~();!</UserHelpText>
         <UserInputType>Password</UserInputType>
         <Restriction>
-          <Pattern RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" />
+          <Pattern RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" HelpText="The password you provided is not valid. It must be between 8 and 16 chacarters, contain at least 1 uppercase character, and at least 1 number or special character. Special characters include: @.#$%^&amp;*-_+=[]{}|\:',?`~();!" />
         </Restriction>
       </ClaimType>
-      <!-- The password regular expression above is constructed for AAD passwords based on restrictions at https://msdn.microsoft.com/en-us/library/azure/jj943764.aspx
-
-        ^( # one of the following four combinations must appear in the password
-         (?=.*[a-z])(?=.*[A-Z])(?=.*\d) |            # matches lower case, upper case or digit
-         (?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]) |  # matches lower case, upper case or special character (i.e. non-alpha or digit)
-         (?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]) |     # matches lower case, digit, or special character
-         (?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])       # matches upper case, digit, or special character
-        )
-        ( # The password must match the following restrictions
-         [A-Za-z\d@#$%^&*\-_+=[\]{}|\\:',?/`~"();!] |   # The list of all acceptable characters (without .)
-         \.(?!@)                                        # or . can appear as long as not followed by @
-        ) {8,16}$                                       # the length must be between 8 and 16 chars inclusive
-
-      -->
+      <!-- The password regular expression above is constructed for AAD passwords based on restrictions at https://msdn.microsoft.com/en-us/library/azure/jj943764.aspx          ^( # one of the following four combinations must appear in the password          (?=.*[a-z])(?=.*[A-Z])(?=.*\d) |            # matches lower case, upper case or digit          (?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]) |  # matches lower case, upper case or special character (i.e. non-alpha or digit)          (?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]) |     # matches lower case, digit, or special character          (?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])       # matches upper case, digit, or special character         )         ( # The password must match the following restrictions          [A-Za-z\d@#$%^&*\-_+=[\]{}|\\:',?/`~"();!] |   # The list of all acceptable characters (without .)          \.(?!@)                                        # or . can appear as long as not followed by @         ) {8,16}$                                       # the length must be between 8 and 16 chars inclusive        -->
       <ClaimType Id="reenterPassword">
-        <DisplayName>Confirm New Password</DisplayName>
+        <DisplayName>Confirm password</DisplayName>
         <DataType>string</DataType>
         <UserHelpText>Confirm new password</UserHelpText>
         <UserInputType>Password</UserInputType>
         <Restriction>
-          <Pattern RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" HelpText=" " />
+          <Pattern RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" HelpText="The password you provided is not valid. Ensure it contains valid characters and it matches the password provided above" />
         </Restriction>
       </ClaimType>
       <ClaimType Id="passwordPolicies">
@@ -170,7 +151,7 @@
         <UserHelpText>Email address that can be used to contact you.</UserHelpText>
         <UserInputType>TextBox</UserInputType>
         <Restriction>
-          <Pattern RegularExpression="^(([^\s@“]+(\.[^\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$" HelpText="Please enter a valid email address." />
+          <Pattern RegularExpression="^(([^\s@?]+(\.[^\s@?]+)*)|(.+?))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$" HelpText="Please enter a valid email address." />
         </Restriction>
       </ClaimType>
       <ClaimType Id="otherMails">
@@ -276,6 +257,18 @@
           <InputParameter Id="valueToCompareTo" DataType="boolean" Value="true" />
         </InputParameters>
       </ClaimsTransformation>
+      <ClaimsTransformation Id="CreateDisplayNameFromFirstNameAndLastName" TransformationMethod="FormatStringMultipleClaims">
+        <InputClaims>
+          <InputClaim ClaimTypeReferenceId="givenName" TransformationClaimType="inputClaim1" />
+          <InputClaim ClaimTypeReferenceId="surName" TransformationClaimType="inputClaim2" />
+        </InputClaims>
+        <InputParameters>
+          <InputParameter Id="stringFormat" DataType="string" Value="{0} {1}" />
+        </InputParameters>
+        <OutputClaims>
+          <OutputClaim ClaimTypeReferenceId="displayName" TransformationClaimType="outputClaim" />
+        </OutputClaims>
+      </ClaimsTransformation>
     </ClaimsTransformations>
     <ClientDefinitions>
       <ClientDefinition Id="DefaultWeb">
@@ -341,6 +334,9 @@
         <Metadata>
           <Item Key="DisplayName">Local account sign up page</Item>
         </Metadata>
+        <LocalizedResourcesReferences MergeBehavior="Prepend">
+          <LocalizedResourcesReference Language="en" LocalizedResourcesReferenceId="api.localaccountsignup.en" />
+        </LocalizedResourcesReferences>
       </ContentDefinition>
       <ContentDefinition Id="api.localaccountpasswordreset">
         <LoadUri>https://{{Portal_Url}}/static/azurepasswordreset.html</LoadUri>
@@ -351,11 +347,19 @@
         </Metadata>
       </ContentDefinition>
     </ContentDefinitions>
+    <Localization Enabled="true">
+      <SupportedLanguages DefaultLanguage="en" MergeBehavior="ReplaceAll">
+        <SupportedLanguage>en</SupportedLanguage>
+      </SupportedLanguages>
+      <LocalizedResources Id="api.localaccountsignup.en">
+        <LocalizedStrings>
+          <LocalizedString ElementType="UxElement" StringId="required_field">Enter your {ClaimType}</LocalizedString>
+          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfMissingRequiredElement">Please enter your {0}</LocalizedString>
+        </LocalizedStrings>
+      </LocalizedResources>
+    </Localization>
   </BuildingBlocks>
-  <!--
-        A list of all the claim providers that can be used in the technical policies. If a claims provider is not listed 
-        in this section, then it cannot be used in a technical policy.
-    -->
+  <!--         A list of all the claim providers that can be used in the technical policies. If a claims provider is not listed          in this section, then it cannot be used in a technical policy.     -->
   <ClaimsProviders>
     <ClaimsProvider>
       <DisplayName>Local Account SignIn</DisplayName>
@@ -422,6 +426,9 @@
             <Item Key="RaiseErrorIfClaimsPrincipalAlreadyExists">true</Item>
           </Metadata>
           <IncludeInSso>false</IncludeInSso>
+          <InputClaimsTransformations>
+            <InputClaimsTransformation ReferenceId="CreateDisplayNameFromFirstNameAndLastName" />
+          </InputClaimsTransformations>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="signInNames.emailAddress" Required="true" />
           </InputClaims>
@@ -494,6 +501,9 @@
             <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
           </Metadata>
           <IncludeInSso>false</IncludeInSso>
+          <InputClaimsTransformations>
+            <InputClaimsTransformation ReferenceId="CreateDisplayNameFromFirstNameAndLastName" />
+          </InputClaimsTransformations>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="objectId" Required="true" />
           </InputClaims>
@@ -503,6 +513,7 @@
             <!-- Optional claims -->
             <PersistedClaim ClaimTypeReferenceId="givenName" />
             <PersistedClaim ClaimTypeReferenceId="surname" />
+            <PersistedClaim ClaimTypeReferenceId="displayName" />
           </PersistedClaims>
           <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
@@ -545,6 +556,10 @@
             <InputClaim ClaimTypeReferenceId="givenName" />
             <InputClaim ClaimTypeReferenceId="surname" />
           </InputClaims>
+          <PersistedClaims>
+            <PersistedClaim ClaimTypeReferenceId="givenName" />
+            <PersistedClaim ClaimTypeReferenceId="surname" />
+          </PersistedClaims>
           <OutputClaims>
             <!-- Required claims -->
             <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
@@ -589,9 +604,9 @@
             <OutputClaim ClaimTypeReferenceId="givenName" />
             <OutputClaim ClaimTypeReferenceId="surName" />
           </OutputClaims>
-          <ValidationTechnicalProfiles>
+          <!--<ValidationTechnicalProfiles>
             <ValidationTechnicalProfile ReferenceId="AAD-UserWriteUsingLogonEmail" />
-          </ValidationTechnicalProfiles>
+          </ValidationTechnicalProfiles>-->
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-AAD" />
         </TechnicalProfile>
         <!-- This technical profile uses a validation technical profile to authenticate the user. -->
