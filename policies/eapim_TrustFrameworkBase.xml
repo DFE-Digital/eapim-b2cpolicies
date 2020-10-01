@@ -17,7 +17,7 @@
       <ClaimType Id="extension_OrganizationName">
         <DisplayName>Organisation</DisplayName>
         <DataType>string</DataType>
-        <UserHelpText>Provide your Organisation Name</UserHelpText>
+        <UserHelpText>Provide your Organisation</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
       <ClaimType Id="socialIdpUserId">

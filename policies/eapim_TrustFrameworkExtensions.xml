@@ -39,7 +39,7 @@
         <DataType>string</DataType>
       </ClaimType>
       <ClaimType Id="extension_OrganizationName">
-        <DisplayName>Organisation Name</DisplayName>
+        <DisplayName>Organisation</DisplayName>
         <DataType>string</DataType>
         <UserHelpText>Provide your Organisation Name</UserHelpText>
         <UserInputType>TextBox</UserInputType>
