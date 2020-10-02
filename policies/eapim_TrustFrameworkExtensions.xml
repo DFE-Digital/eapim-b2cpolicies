@@ -103,7 +103,7 @@
           <InputClaim ClaimTypeReferenceId="email" TransformationClaimType="inputClaim" />
         </InputClaims>
         <InputParameters>
-          <InputParameter Id="stringFormat" DataType="string" Value="We have sent a confirmation email to: {0}." />
+          <InputParameter Id="stringFormat" DataType="string" Value="We have sent a confirmation email to {0}." />
         </InputParameters>
         <OutputClaims>
           <OutputClaim ClaimTypeReferenceId="EmailVerificationMessage" TransformationClaimType="outputClaim" />
