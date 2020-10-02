@@ -178,6 +178,11 @@
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.0.0</DataUri>
       </ContentDefinition>
+      <ContentDefinition Id="api.selfasserted.passwordchangeconfirmed">
+        <LoadUri>https://{{Portal_Url}}/static/azurepasswordchangeconfirmed.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.0.0</DataUri>
+      </ContentDefinition>
       <ContentDefinition Id="api.localaccountpasswordreset">
         <!-- <LoadUri>~/tenant/templates/AzureBlue/selfAsserted.cshtml</LoadUri>-->
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
@@ -633,10 +638,10 @@
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
         </TechnicalProfile>
         <TechnicalProfile Id="SelfAsserted-PasswordChangeConfirmationScreen">
-          <DisplayName>PasswordChangeConfirmationScreen </DisplayName>
+          <DisplayName>PasswordChangeConfirmationScreen</DisplayName>
           <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
-            <Item Key="ContentDefinitionReferenceId">api.selfasserted.passwordchange</Item>
+            <Item Key="ContentDefinitionReferenceId">api.selfasserted.passwordchangeconfirmed</Item>
             <Item Key="setting.showContinueButton">true</Item>
             <Item Key="setting.showCancelButton">false</Item>
           </Metadata>
