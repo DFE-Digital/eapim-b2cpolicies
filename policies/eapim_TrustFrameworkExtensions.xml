@@ -376,7 +376,7 @@
             <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
             <OutputClaim ClaimTypeReferenceId="newPassword" Required="true" />
             <OutputClaim ClaimTypeReferenceId="reenterPassword" Required="true" />
-            <OutputClaim ClaimTypeReferenceId="extension_OrganizationName" Required="true" />
+            <!-- <OutputClaim ClaimTypeReferenceId="extension_OrganizationName" Required="true" /> -->
           </OutputClaims>
           <!--uncomment to enable the email verification call to rest api-->
           <ValidationTechnicalProfiles>
@@ -404,7 +404,7 @@
         </TechnicalProfile>
         <TechnicalProfile Id="AAD-UserWriteUsingLogonEmail">
           <PersistedClaims>
-            <PersistedClaim ClaimTypeReferenceId="extension_OrganizationName" />
+            <!-- <PersistedClaim ClaimTypeReferenceId="extension_OrganizationName" /> -->
             <PersistedClaim ClaimTypeReferenceId="extension_verifiedEmailString" DefaultValue="false" />
           </PersistedClaims>
         </TechnicalProfile>
@@ -412,7 +412,7 @@
           <PersistedClaims>
             <PersistedClaim ClaimTypeReferenceId="givenName" />
             <PersistedClaim ClaimTypeReferenceId="surName" />
-            <PersistedClaim ClaimTypeReferenceId="extension_OrganizationName" />
+            <!-- <PersistedClaim ClaimTypeReferenceId="extension_OrganizationName" /> -->
           </PersistedClaims>
         </TechnicalProfile>
       </TechnicalProfiles>
@@ -455,12 +455,12 @@
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="givenName" />
             <InputClaim ClaimTypeReferenceId="surname" />
-            <InputClaim ClaimTypeReferenceId="extension_OrganizationName" />
+            <!-- <InputClaim ClaimTypeReferenceId="extension_OrganizationName" /> -->
           </InputClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="givenName" />
             <OutputClaim ClaimTypeReferenceId="surname" />
-            <OutputClaim ClaimTypeReferenceId="extension_OrganizationName" />
+            <!-- <OutputClaim ClaimTypeReferenceId="extension_OrganizationName" /> -->
           </OutputClaims>
         </TechnicalProfile>
         <!-- This technical profile uses a validation technical profile to authenticate the user. -->
