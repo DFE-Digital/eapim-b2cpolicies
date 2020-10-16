@@ -20,6 +20,11 @@
         <UserHelpText>Enter password</UserHelpText>
         <UserInputType>Password</UserInputType>
       </ClaimType>
+      <ClaimType Id="link">
+        <DisplayName>id token hint link response</DisplayName>
+        <DataType>string</DataType>
+        <UserHelpText />
+      </ClaimType>
       <ClaimType Id="dummy">
         <DisplayName>hide me</DisplayName>
         <DataType>string</DataType>
@@ -35,12 +40,22 @@
         <DataType>string</DataType>
         <UserHelpText />
       </ClaimType>
+      <ClaimType Id="ResendEmailVerificationMessage">
+        <DisplayName></DisplayName>
+        <DataType>string</DataType>
+        <UserInputType>Paragraph</UserInputType>
+      </ClaimType>
       <ClaimType Id="EmailVerificationMessage">
         <DisplayName></DisplayName>
         <DataType>string</DataType>
         <UserInputType>Paragraph</UserInputType>
       </ClaimType>
       <ClaimType Id="PasswordChangeMessage">
+        <DisplayName></DisplayName>
+        <DataType>string</DataType>
+        <UserInputType>Paragraph</UserInputType>
+      </ClaimType>
+      <ClaimType Id="ResendMessage">
         <DisplayName></DisplayName>
         <DataType>string</DataType>
         <UserInputType>Paragraph</UserInputType>
@@ -90,7 +105,15 @@
       </ClaimType>
     </ClaimsSchema>
     <ClaimsTransformations>
-    <ClaimsTransformation Id="CreatePasswordChangeMessage" TransformationMethod="CreateStringClaim">
+      <ClaimsTransformation Id="CreateResendPageMessage" TransformationMethod="CreateStringClaim">
+        <InputParameters>
+          <InputParameter Id="value" DataType="string" Value="Emails can take a few minutes to arrive. If you have not received it check your spam folder, or we can resend it." />
+        </InputParameters>
+        <OutputClaims>
+          <OutputClaim ClaimTypeReferenceId="ResendMessage" TransformationClaimType="createdClaim" />
+        </OutputClaims>
+      </ClaimsTransformation>
+      <ClaimsTransformation Id="CreatePasswordChangeMessage" TransformationMethod="CreateStringClaim">
         <InputParameters>
           <InputParameter Id="value" DataType="string" Value="Your password has successfully been changed." />
         </InputParameters>
@@ -107,6 +130,17 @@
         </InputParameters>
         <OutputClaims>
           <OutputClaim ClaimTypeReferenceId="EmailVerificationMessage" TransformationClaimType="outputClaim" />
+        </OutputClaims>
+      </ClaimsTransformation>
+      <ClaimsTransformation Id="CreateResendEmailVerificationMessage" TransformationMethod="FormatStringClaim">
+        <InputClaims>
+          <InputClaim ClaimTypeReferenceId="link" TransformationClaimType="inputClaim" />
+        </InputClaims>
+        <InputParameters>
+          <InputParameter Id="stringFormat" DataType="string" Value="Click here to resend your email verification link: {0}" />
+        </InputParameters>
+        <OutputClaims>
+          <OutputClaim ClaimTypeReferenceId="ResendEmailVerificationMessage" TransformationClaimType="outputClaim" />
         </OutputClaims>
       </ClaimsTransformation>
       <ClaimsTransformation Id="CreateUserIdForMFA" TransformationMethod="FormatStringClaim">
@@ -359,7 +393,7 @@
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="extension_OrganizationName" />
             <OutputClaim ClaimTypeReferenceId="strongAuthenticationPhoneNumber" />
-            <!-- <OutputClaim ClaimTypeReferenceId="signInNames.emailAddress" />  -->
+            <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="signInNames.emailAddress" />
           </OutputClaims>
         </TechnicalProfile>
         <TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">
@@ -376,12 +410,14 @@
             <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
             <OutputClaim ClaimTypeReferenceId="newPassword" Required="true" />
             <OutputClaim ClaimTypeReferenceId="reenterPassword" Required="true" />
+            <OutputClaim ClaimTypeReferenceId="link" />
             <!-- <OutputClaim ClaimTypeReferenceId="extension_OrganizationName" Required="true" /> -->
           </OutputClaims>
           <!--uncomment to enable the email verification call to rest api-->
           <ValidationTechnicalProfiles>
             <ValidationTechnicalProfile ReferenceId="AAD-UserWriteUsingLogonEmail" />
             <ValidationTechnicalProfile ReferenceId="REST-SendEmailVerificationLink" />
+            <ValidationTechnicalProfile ReferenceId="REST-GetEmailVerificationLink" />
           </ValidationTechnicalProfiles>
         </TechnicalProfile>
         <TechnicalProfile Id="REST-SendEmailVerificationLink">
@@ -414,6 +450,25 @@
             <PersistedClaim ClaimTypeReferenceId="surName" />
             <!-- <PersistedClaim ClaimTypeReferenceId="extension_OrganizationName" /> -->
           </PersistedClaims>
+        </TechnicalProfile>
+        <TechnicalProfile Id="REST-GetEmailVerificationLink">
+          <DisplayName>REST-GetEmailVerificationLink</DisplayName>
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Metadata>
+            <Item Key="ServiceUrl">{{eapim-email-invitation-link}}</Item>
+            <Item Key="SendClaimsIn">Body</Item>
+            <!-- Set AuthenticationType to Basic or ClientCertificate in production environments -->
+            <Item Key="AuthenticationType">None</Item>
+            <!-- REMOVE the following line in production environments -->
+            <Item Key="AllowInsecureAuthInProduction">true</Item>
+          </Metadata>
+          <InputClaims>
+            <InputClaim ClaimTypeReferenceId="objectId" />
+          </InputClaims>
+          <OutputClaims>
+            <OutputClaim ClaimTypeReferenceId="link" DefaultValue="null" />
+          </OutputClaims>
+          <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
         </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>
@@ -524,6 +579,7 @@
           </InputClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="objectId" />
+            <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="signInNames.emailAddress" />
             <OutputClaim ClaimTypeReferenceId="extension_verifiedEmailString" />
           </OutputClaims>
           <IncludeTechnicalProfile ReferenceId="AAD-Common" />
@@ -628,13 +684,40 @@
           </Metadata>
           <InputClaimsTransformations>
             <InputClaimsTransformation ReferenceId="CreateEmailVerificationMessage" />
+            <InputClaimsTransformation ReferenceId="CreateResendEmailVerificationMessage" />
           </InputClaimsTransformations>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="EmailVerificationMessage" />
+            <InputClaim ClaimTypeReferenceId="ResendEmailVerificationMessage" />
           </InputClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="EmailVerificationMessage" />
+            <OutputClaim ClaimTypeReferenceId="ResendEmailVerificationMessage" />
           </OutputClaims>
+          <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
+        </TechnicalProfile>
+        <TechnicalProfile Id="SelfAsserted-ConfirmResendLinkPage">
+          <DisplayName>Resend Email verification confirmation screen</DisplayName>
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Metadata>
+            <Item Key="ContentDefinitionReferenceId">api.selfasserted</Item>
+            <Item Key="setting.showContinueButton">true</Item>
+            <Item Key="setting.showCancelButton">false</Item>
+          </Metadata>
+          <InputClaimsTransformations>
+            <InputClaimsTransformation ReferenceId="CreateResendPageMessage" />
+          </InputClaimsTransformations>
+          <InputClaims>
+            <InputClaim ClaimTypeReferenceId="ResendMessage" />
+          </InputClaims>
+          <OutputClaims>
+            <OutputClaim ClaimTypeReferenceId="ResendMessage" />
+            <OutputClaim ClaimTypeReferenceId="link" />
+          </OutputClaims>
+          <ValidationTechnicalProfiles>
+            <ValidationTechnicalProfile ReferenceId="REST-SendEmailVerificationLink" />
+            <ValidationTechnicalProfile ReferenceId="REST-GetEmailVerificationLink" />
+          </ValidationTechnicalProfiles>
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
         </TechnicalProfile>
         <TechnicalProfile Id="SelfAsserted-PasswordChangeConfirmationScreen">
@@ -680,6 +763,22 @@
             <OutputClaim ClaimTypeReferenceId="redemptionflow" />
           </OutputClaims>
         </TechnicalProfile>
+        <TechnicalProfile Id="IdTokenHint_ExtractClaims_forResendVerificationEmailLoop">
+          <DisplayName> My ID Token Hint TechnicalProfile</DisplayName>
+          <Protocol Name="None" />
+          <Metadata>
+            <!--Sample action required: replace with your endpoint location -->
+            <Item Key="METADATA">{{eapim-well-known-open-id-url}}</Item>
+            <!-- overridden audience to match whats being sent from api-->
+            <Item Key="IdTokenAudience">{{IdentityExperienceFramework-App-Client-Id}}</Item>
+            <!-- <Item Key="issuer">your_optional_token_issuer_override</Item> -->
+          </Metadata>
+          <!--<CryptographicKeys>             <Key Id="client_secret" StorageReferenceId="B2C_1A_idtokenhintkey" />           </CryptographicKeys> -->
+          <OutputClaims>
+            <!--Sample: Read the objectid cliam from the id_token_hint-->
+            <OutputClaim ClaimTypeReferenceId="objectId" />
+          </OutputClaims>
+        </TechnicalProfile>
         <TechnicalProfile Id="SelfAsserted-LocalAccountSignin-Email-SignInEmailVerificationRecovery">
           <DisplayName>Local Account Signin</DisplayName>
           <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
@@ -699,6 +798,7 @@
             <OutputClaim ClaimTypeReferenceId="password" Required="true" />
             <OutputClaim ClaimTypeReferenceId="objectId" />
             <OutputClaim ClaimTypeReferenceId="authenticationSource" />
+            <OutputClaim ClaimTypeReferenceId="email" />
           </OutputClaims>
           <ValidationTechnicalProfiles>
             <ValidationTechnicalProfile ReferenceId="login-NonInteractive" />
@@ -890,7 +990,14 @@
     </UserJourney>
     <UserJourney Id="ResendVerificationEmail">
       <OrchestrationSteps>
-        <OrchestrationStep Order="1" Type="CombinedSignInAndSignUp" ContentDefinitionReferenceId="api.signuporsignin">
+        <OrchestrationStep Order="1" Type="GetClaims" CpimIssuerTechnicalProfileReferenceId="IdTokenHint_ExtractClaims_forResendVerificationEmailLoop" />
+        <OrchestrationStep Order="2" Type="CombinedSignInAndSignUp" ContentDefinitionReferenceId="api.signuporsignin">
+          <Preconditions>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>objectId</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
           <ClaimsProviderSelections>
             <ClaimsProviderSelection ValidationClaimsExchangeId="LocalAccountSigninEmailExchange" />
           </ClaimsProviderSelections>
@@ -899,9 +1006,14 @@
           </ClaimsExchanges>
         </OrchestrationStep>
         <!-- This step reads any user attributes that we may not have received when in the token. -->
-        <OrchestrationStep Order="2" Type="ClaimsExchange">
+        <OrchestrationStep Order="3" Type="ClaimsExchange">
           <ClaimsExchanges>
             <ClaimsExchange Id="AADUserReadWithObjectId" TechnicalProfileReferenceId="AAD-UserReadUsingObjectId" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <OrchestrationStep Order="4" Type="ClaimsExchange">
+          <ClaimsExchanges>
+            <ClaimsExchange Id="ConfirmResendLinkPage" TechnicalProfileReferenceId="SelfAsserted-ConfirmResendLinkPage" />
           </ClaimsExchanges>
         </OrchestrationStep>
         <!--<OrchestrationStep Order="3" Type="ClaimsExchange">
@@ -927,12 +1039,12 @@
             <ClaimsExchange Id="AADUserWriteWithObjectId" TechnicalProfileReferenceId="AAD-UserWritePhoneNumberUsingObjectId" />
           </ClaimsExchanges>
         </OrchestrationStep>-->
-        <OrchestrationStep Order="3" Type="ClaimsExchange">
+        <OrchestrationStep Order="5" Type="ClaimsExchange">
           <ClaimsExchanges>
             <ClaimsExchange Id="EmailMessagePage" TechnicalProfileReferenceId="SelfAsserted-EmailMessage" />
           </ClaimsExchanges>
         </OrchestrationStep>
-        <OrchestrationStep Order="4" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
+        <OrchestrationStep Order="6" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
       </OrchestrationSteps>
       <ClientDefinition ReferenceId="DefaultWeb" />
     </UserJourney>
