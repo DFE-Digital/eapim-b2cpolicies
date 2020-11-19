@@ -770,7 +770,7 @@
             <!--Sample action required: replace with your endpoint location -->
             <Item Key="METADATA">{{eapim-well-known-open-id-url}}</Item>
             <!-- overridden audience to match whats being sent from api-->
-            <Item Key="IdTokenAudience">{{IdentityExperienceFramework-App-Client-Id}}</Item>
+            <Item Key="IdTokenAudience">{{eapim-external-portal-client-id}}</Item>
             <!-- <Item Key="issuer">your_optional_token_issuer_override</Item> -->
           </Metadata>
           <!--<CryptographicKeys>             <Key Id="client_secret" StorageReferenceId="B2C_1A_idtokenhintkey" />           </CryptographicKeys> -->
