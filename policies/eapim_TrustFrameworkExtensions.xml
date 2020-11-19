@@ -700,7 +700,7 @@
           <DisplayName>Resend Email verification confirmation screen</DisplayName>
           <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
-            <Item Key="ContentDefinitionReferenceId">api.selfasserted</Item>
+            <Item Key="ContentDefinitionReferenceId">api.selfasserted.resendcode</Item>
             <Item Key="setting.showContinueButton">true</Item>
             <Item Key="setting.showCancelButton">false</Item>
           </Metadata>
