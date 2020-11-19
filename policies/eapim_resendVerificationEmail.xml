@@ -3,6 +3,13 @@
     <TenantId>{{Tenant_Name}}</TenantId>
     <PolicyId>B2C_1A_eapim_TrustFrameworkExtensions</PolicyId>
   </BasePolicy>
+  <BuildingBlocks>
+    <ContentDefinitions>
+      <ContentDefinition Id="api.selfasserted.resendcode">
+        <LoadUri>https://{{Portal_Url}}/static/azureresendverification.html</LoadUri>
+      </ContentDefinition>
+    </ContentDefinitions>
+  </BuildingBlocks>
   <RelyingParty>
     <DefaultUserJourney ReferenceId="ResendVerificationEmail" />
     <UserJourneyBehaviors>
