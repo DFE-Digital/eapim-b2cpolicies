@@ -470,6 +470,22 @@
           </OutputClaims>
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
         </TechnicalProfile>
+        <TechnicalProfile Id="REST-GetEmailVerificationLink-SignInError">
+          <DisplayName>REST-GetEmailVerificationLink</DisplayName>
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Metadata>
+            <Item Key="ServiceUrl">{{eapim-email-invitation-error-link}}</Item>
+            <Item Key="SendClaimsIn">Body</Item>
+            <!-- Set AuthenticationType to Basic or ClientCertificate in production environments -->
+            <Item Key="AuthenticationType">None</Item>
+            <!-- REMOVE the following line in production environments -->
+            <Item Key="AllowInsecureAuthInProduction">true</Item>
+          </Metadata>
+          <InputClaims>
+            <InputClaim ClaimTypeReferenceId="objectId" />
+          </InputClaims>
+          <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
+        </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>
     <ClaimsProvider>
@@ -527,7 +543,7 @@
             <Item Key="SignUpTarget">SignUpWithLogonEmailExchange</Item>
             <Item Key="setting.operatingMode">Email</Item>
             <Item Key="ContentDefinitionReferenceId">api.selfasserted</Item>
-            <Item Key="UserMessageIfClaimsTransformationStringsAreNotEqual">Please use the link sent to your inbox to verify your email.</Item>
+            <!-- <Item Key="UserMessageIfClaimsTransformationStringsAreNotEqual">Please use the link sent to your inbox to verify your email.</Item> -->
           </Metadata>
           <IncludeInSso>false</IncludeInSso>
           <InputClaims>
@@ -551,7 +567,7 @@
                 </Precondition>
               </Preconditions>
             </ValidationTechnicalProfile>
-            <ValidationTechnicalProfile ReferenceId="AssertEmailVerifiedTrue">
+            <ValidationTechnicalProfile ReferenceId="REST-GetEmailVerificationLink-SignInError">
               <Preconditions>
                 <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
                   <Value>extension_verifiedEmailString</Value>
