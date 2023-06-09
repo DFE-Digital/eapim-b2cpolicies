@@ -80,10 +80,10 @@
       <ClaimType Id="newPassword">
         <DisplayName>Create a password</DisplayName>
         <DataType>string</DataType>
-        <UserHelpText>The password must be minimum 8 characters, contain at least 1 uppercase character and at least 1 number. Special characters are allowed. They include: ! &quot; # $ % &amp; &apos; ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ~</UserHelpText>
+        <UserHelpText>Your password must contain a minimum of 8 characters, at least one uppercase letter, at least one lowercase letter and at least one digit.</UserHelpText>
         <UserInputType>Password</UserInputType>
         <Restriction>
-          <Pattern RegularExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]([A-Za-z\d!&quot;#$%&amp;&apos;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~]|\.(?!@)){8,}$" HelpText="The password you provided is not valid. It must be minimum 8 characters, contain at least 1 uppercase character and at least 1 number. Special character are allowed. They include: ! &quot; # $ % &amp; &apos; ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ~" />
+          <Pattern RegularExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)([A-Za-z\d!()[\]&lt;&gt;#?!@$%^&amp;*\-+&quot;&apos;_={}:;~/|`.,\\]){8,}$" HelpText="Enter a password that meets the criteria" />
         </Restriction>
       </ClaimType>
       <!-- The password regular expression above is constructed for AAD passwords based on restrictions at https://msdn.microsoft.com/en-us/library/azure/jj943764.aspx          ^( # one of the following four combinations must appear in the password          (?=.*[a-z])(?=.*[A-Z])(?=.*\d) |            # matches lower case, upper case or digit          (?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]) |  # matches lower case, upper case or special character (i.e. non-alpha or digit)          (?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]) |     # matches lower case, digit, or special character          (?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])       # matches upper case, digit, or special character         )         ( # The password must match the following restrictions          [A-Za-z\d@#$%^&*\-_+=[\]{}|\\:',?/`~"();!] |   # The list of all acceptable characters (without .)          \.(?!@)                                        # or . can appear as long as not followed by @         ) {8,16}$                                       # the length must be between 8 and 16 chars inclusive        -->
@@ -93,7 +93,7 @@
         <UserHelpText>Confirm new password</UserHelpText>
         <UserInputType>Password</UserInputType>
         <Restriction>
-          <Pattern RegularExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]([A-Za-z\d!&quot;#$%&amp;&apos;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~]|\.(?!@)){8,}$" HelpText="The password you provided is not valid. Ensure it contains valid characters and it matches the password provided above" />
+          <Pattern RegularExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)([A-Za-z\d!()[\]&lt;&gt;#?!@$%^&amp;*\-+&quot;&apos;_={}:;~/|`.,\\]){8,}$" HelpText="Enter a password confirmation that matches the password and meets the password criteria" />
         </Restriction>
       </ClaimType>
       <ClaimType Id="passwordPolicies">
