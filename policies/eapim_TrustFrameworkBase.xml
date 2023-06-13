@@ -154,6 +154,12 @@
           <Pattern RegularExpression="^(([^\s@?]+(\.[^\s@?]+)*)|(.+?))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$" HelpText="Please enter a valid email address." />
         </Restriction>
       </ClaimType>
+      <ClaimType Id="readOnlyEmail">
+        <DisplayName>Email Address</DisplayName>
+        <DataType>string</DataType>
+        <UserInputType>Readonly</UserInputType>
+      </ClaimType>
+
       <ClaimType Id="otherMails">
         <DisplayName>Alternate Email Addresses</DisplayName>
         <DataType>stringCollection</DataType>
@@ -240,6 +246,17 @@
       </ClaimType>
     </ClaimsSchema>
     <ClaimsTransformations>
+     <ClaimsTransformation Id="CopyFromEmailToReadOnlyEmail" TransformationMethod="FormatStringClaim">
+        <InputClaims>
+          <InputClaim ClaimTypeReferenceId="email" TransformationClaimType="inputClaim" />
+        </InputClaims>
+        <InputParameters>
+          <InputParameter Id="stringFormat" DataType="string" Value="{0}" />
+        </InputParameters>
+        <OutputClaims>
+          <OutputClaim ClaimTypeReferenceId="readOnlyEmail" TransformationClaimType="outputClaim" />
+        </OutputClaims>
+      </ClaimsTransformation>
       <ClaimsTransformation Id="CreateOtherMailsFromEmail" TransformationMethod="AddItemToStringCollection">
         <InputClaims>
           <InputClaim ClaimTypeReferenceId="email" TransformationClaimType="item" />
