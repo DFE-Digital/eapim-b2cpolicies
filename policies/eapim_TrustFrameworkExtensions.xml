@@ -241,7 +241,7 @@
     <DisplayControls>
       <DisplayControl Id="emailVerificationControl" UserInterfaceControlType="VerificationControl">
        <InputClaims>
-        <InputClaim ClaimTypeReferenceId="readOnlyEmail" />
+        <InputClaim ClaimTypeReferenceId="email" />
        </InputClaims>
         <DisplayClaims>
           <DisplayClaim ClaimTypeReferenceId="readOnlyEmail"/>
@@ -895,7 +895,6 @@
           </InputClaimsTransformations>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="email" />
-            <InputClaim ClaimTypeReferenceId="readOnlyEmail" />
           </InputClaims>
           <DisplayClaims>
             <DisplayClaim DisplayControlReferenceId="emailVerificationControl" /> 
@@ -903,6 +902,7 @@
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="readOnlyEmail" />
             <OutputClaim ClaimTypeReferenceId="objectId" />
+            <OutputClaim ClaimTypeReferenceId="email" />      
             <!-- <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
             <OutputClaim ClaimTypeReferenceId="authenticationSource" /> -->
           </OutputClaims>
