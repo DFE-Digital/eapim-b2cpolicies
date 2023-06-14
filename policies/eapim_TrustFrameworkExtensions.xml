@@ -242,9 +242,11 @@
       <DisplayControl Id="emailVerificationControl" UserInterfaceControlType="VerificationControl">
        <InputClaims>
         <InputClaim ClaimTypeReferenceId="email" />
+        <InputClaim ClaimTypeReferenceId="readOnlyEmail" />
        </InputClaims>
         <DisplayClaims>
           <DisplayClaim ClaimTypeReferenceId="readOnlyEmail"/>
+          <DisplayClaim ClaimTypeReferenceId="email" />
           <DisplayClaim ClaimTypeReferenceId="verificationCode" ControlClaimType="VerificationCode" Required="true" />
         </DisplayClaims>
         <Actions>
