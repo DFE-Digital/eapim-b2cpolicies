@@ -376,7 +376,7 @@
       </SupportedLanguages>
       <LocalizedResources Id="api.requiredfields.en">
         <LocalizedStrings>
-          <LocalizedString ElementType="UxElement" StringId="required_field">Enter your {ClaimType}</LocalizedString>
+          <LocalizedString ElementType="UxElement" StringId="required_field">Enter your test {ClaimType}</LocalizedString>
           <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfMissingRequiredElement">Enter your {0}</LocalizedString>
         </LocalizedStrings>
       </LocalizedResources>

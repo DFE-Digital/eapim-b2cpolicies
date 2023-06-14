@@ -371,11 +371,8 @@
           <Metadata>
             <Item Key="Operation">VerifyCode</Item>
           </Metadata>
-          <InputClaimsTransformations>
-            <InputClaimsTransformation ReferenceId="CopyFromEmailToReadOnlyEmail" />
-          </InputClaimsTransformations>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="verificationCode" PartnerClaimType="verificationCode" />
+            <InputClaim ClaimTypeReferenceId="verificationCode" PartnerClaimType="verificationCode" Required="true"/>
             <InputClaim ClaimTypeReferenceId="readOnlyEmail" PartnerClaimType="emailAddress" />
           </InputClaims>
         </TechnicalProfile>
@@ -893,11 +890,14 @@
             <Key Id="issuer_secret" StorageReferenceId="B2C_1A_TokenSigningKeyContainer" />
           </CryptographicKeys>
           <IncludeInSso>false</IncludeInSso>
+           <InputClaimsTransformations>
+               <InputClaimsTransformation ReferenceId="CopyFromEmailToReadOnlyEmail" />
+          </InputClaimsTransformations>
           <DisplayClaims>
             <DisplayClaim DisplayControlReferenceId="emailVerificationControl" />
           </DisplayClaims>
           <OutputClaims>
-            <OutputClaim ClaimTypeReferenceId="email" />
+            <OutputClaim ClaimTypeReferenceId="readOnlyEmail" Required="true" />
             <OutputClaim ClaimTypeReferenceId="objectId" />
             <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
             <OutputClaim ClaimTypeReferenceId="authenticationSource" />
