@@ -240,13 +240,16 @@
     </ContentDefinitions>
     <DisplayControls>
       <DisplayControl Id="emailVerificationControl" UserInterfaceControlType="VerificationControl">
+       <InputClaims>
+        <InputClaim ClaimTypeReferenceId="readOnlyEmail" />
+       </InputClaims>
         <DisplayClaims>
-          <DisplayClaim ClaimTypeReferenceId="email" Required="true" />
+          <DisplayClaim ClaimTypeReferenceId="readOnlyEmail"/>
           <DisplayClaim ClaimTypeReferenceId="verificationCode" ControlClaimType="VerificationCode" Required="true" />
         </DisplayClaims>
-        <OutputClaims>
+        <!-- <OutputClaims>
           <OutputClaim ClaimTypeReferenceId="email" />
-        </OutputClaims>
+        </OutputClaims> -->
         <Actions>
           <Action Id="SendCode">
             <ValidationClaimsExchange>
@@ -365,6 +368,16 @@
           </OutputClaimsTransformations>
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
         </TechnicalProfile>
+         <TechnicalProfile Id="AadSspr-SendCode">
+          <DisplayName>Send Code</DisplayName>
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AadSsprProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Metadata>
+            <Item Key="Operation">SendCode</Item>
+          </Metadata>
+          <InputClaims>
+            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="emailAddress"/>
+          </InputClaims>
+        </TechnicalProfile>
         <TechnicalProfile Id="AadSspr-VerifyCode">
           <DisplayName>Verify Code</DisplayName>
           <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AadSsprProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
@@ -375,17 +388,7 @@
             <InputClaim ClaimTypeReferenceId="verificationCode" PartnerClaimType="verificationCode" Required="true"/>
             <InputClaim ClaimTypeReferenceId="readOnlyEmail" PartnerClaimType="emailAddress" />
           </InputClaims>
-        </TechnicalProfile>
-        <TechnicalProfile Id="AadSspr-SendCode">
-          <DisplayName>Send Code</DisplayName>
-          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AadSsprProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
-          <Metadata>
-            <Item Key="Operation">SendCode</Item>
-          </Metadata>
-          <InputClaims>
-            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="emailAddress" Required="true" />
-          </InputClaims>
-        </TechnicalProfile>
+        </TechnicalProfile>     
         <TechnicalProfile Id="AAD-CheckUserExistsUsingEmail">
           <Metadata>
             <Item Key="Operation">Read</Item>
@@ -890,17 +893,21 @@
             <Key Id="issuer_secret" StorageReferenceId="B2C_1A_TokenSigningKeyContainer" />
           </CryptographicKeys>
           <IncludeInSso>false</IncludeInSso>
-           <InputClaimsTransformations>
-               <InputClaimsTransformation ReferenceId="CopyFromEmailToReadOnlyEmail" />
+          <InputClaimsTransformations>
+            <InputClaimsTransformation ReferenceId="CopyEmailAddress" />
           </InputClaimsTransformations>
+          <InputClaims>
+            <InputClaim ClaimTypeReferenceId="email" />
+            <InputClaim ClaimTypeReferenceId="readOnlyEmail" />
+          </InputClaims>
           <DisplayClaims>
-            <DisplayClaim DisplayControlReferenceId="emailVerificationControl" />
+            <DisplayClaim DisplayControlReferenceId="emailVerificationControl" /> 
           </DisplayClaims>
           <OutputClaims>
-            <OutputClaim ClaimTypeReferenceId="readOnlyEmail" Required="true" />
-            <OutputClaim ClaimTypeReferenceId="objectId" />
+            <OutputClaim ClaimTypeReferenceId="readOnlyEmail" />
+            <!-- <OutputClaim ClaimTypeReferenceId="objectId" />
             <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
-            <OutputClaim ClaimTypeReferenceId="authenticationSource" />
+            <OutputClaim ClaimTypeReferenceId="authenticationSource" /> -->
           </OutputClaims>
           <ValidationTechnicalProfiles>
             <ValidationTechnicalProfile ReferenceId="AAD-UserReadUsingEmailAddress" />

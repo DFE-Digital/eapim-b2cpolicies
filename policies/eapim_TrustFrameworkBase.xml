@@ -246,13 +246,10 @@
       </ClaimType>
     </ClaimsSchema>
     <ClaimsTransformations>
-     <ClaimsTransformation Id="CopyFromEmailToReadOnlyEmail" TransformationMethod="FormatStringClaim">
+     <ClaimsTransformation Id="CopyEmailAddress" TransformationMethod="FormatStringClaim">
         <InputClaims>
           <InputClaim ClaimTypeReferenceId="email" TransformationClaimType="inputClaim" />
         </InputClaims>
-        <InputParameters>
-          <InputParameter Id="stringFormat" DataType="string" Value="{0}" />
-        </InputParameters>
         <OutputClaims>
           <OutputClaim ClaimTypeReferenceId="readOnlyEmail" TransformationClaimType="outputClaim" />
         </OutputClaims>
