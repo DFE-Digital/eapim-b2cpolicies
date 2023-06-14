@@ -247,9 +247,6 @@
           <DisplayClaim ClaimTypeReferenceId="readOnlyEmail"/>
           <DisplayClaim ClaimTypeReferenceId="verificationCode" ControlClaimType="VerificationCode" Required="true" />
         </DisplayClaims>
-        <!-- <OutputClaims>
-          <OutputClaim ClaimTypeReferenceId="email" />
-        </OutputClaims> -->
         <Actions>
           <Action Id="SendCode">
             <ValidationClaimsExchange>
@@ -905,8 +902,8 @@
           </DisplayClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="readOnlyEmail" />
-            <!-- <OutputClaim ClaimTypeReferenceId="objectId" />
-            <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
+            <OutputClaim ClaimTypeReferenceId="objectId" />
+            <!-- <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
             <OutputClaim ClaimTypeReferenceId="authenticationSource" /> -->
           </OutputClaims>
           <ValidationTechnicalProfiles>
