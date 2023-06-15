@@ -240,12 +240,13 @@
     </ContentDefinitions>
     <DisplayControls>
       <DisplayControl Id="emailVerificationControl" UserInterfaceControlType="VerificationControl">
-       <!-- <InputClaims>
-        <InputClaim ClaimTypeReferenceId="email" />
-        <InputClaim ClaimTypeReferenceId="readOnlyEmail" />
-       </InputClaims> -->
+       <InputClaims>
+          <InputClaim ClaimTypeReferenceId="email" />
+          <InputClaim ClaimTypeReferenceId="readOnlyEmail" />
+       </InputClaims>
         <DisplayClaims>
           <DisplayClaim ClaimTypeReferenceId="email"  Required="true" />
+          <DisplayClaim ClaimTypeReferenceId="readOnlyEmail" />
           <DisplayClaim ClaimTypeReferenceId="verificationCode" ControlClaimType="VerificationCode" Required="true" />
         </DisplayClaims>
         <Actions>
@@ -374,7 +375,7 @@
           </Metadata>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="verificationCode" PartnerClaimType="verificationCode" Required="true"/>
-            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="emailAddress" />
+            <InputClaim ClaimTypeReferenceId="readOnlyEmail" PartnerClaimType="emailAddress" />
           </InputClaims>
         </TechnicalProfile>  
          <TechnicalProfile Id="AadSspr-SendCode">
@@ -891,11 +892,12 @@
             <Key Id="issuer_secret" StorageReferenceId="B2C_1A_TokenSigningKeyContainer" />
           </CryptographicKeys>
           <IncludeInSso>false</IncludeInSso>
-          <!-- <InputClaimsTransformations>
+          <InputClaimsTransformations>
             <InputClaimsTransformation ReferenceId="CopyEmailAddress" />
-          </InputClaimsTransformations> -->
+          </InputClaimsTransformations>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="email" />
+            <InputClaim ClaimTypeReferenceId="readOnlyEmail" />
           </InputClaims>
           <DisplayClaims>
             <DisplayClaim DisplayControlReferenceId="emailVerificationControl" /> 
