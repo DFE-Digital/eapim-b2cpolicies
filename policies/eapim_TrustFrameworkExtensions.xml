@@ -240,12 +240,12 @@
     </ContentDefinitions>
     <DisplayControls>
       <DisplayControl Id="emailVerificationControl" UserInterfaceControlType="VerificationControl">
-       <InputClaims>
+       <!-- <InputClaims>
         <InputClaim ClaimTypeReferenceId="email" />
-        <!-- <InputClaim ClaimTypeReferenceId="readOnlyEmail" /> -->
-       </InputClaims>
+        <InputClaim ClaimTypeReferenceId="readOnlyEmail" />
+       </InputClaims> -->
         <DisplayClaims>
-          <DisplayClaim ClaimTypeReferenceId="email" />
+          <DisplayClaim ClaimTypeReferenceId="email"  Required="true" />
           <DisplayClaim ClaimTypeReferenceId="verificationCode" ControlClaimType="VerificationCode" Required="true" />
         </DisplayClaims>
         <Actions>
@@ -366,21 +366,7 @@
           </OutputClaimsTransformations>
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
         </TechnicalProfile>
-         <TechnicalProfile Id="AadSspr-SendCode">
-          <DisplayName>Send Code</DisplayName>
-          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AadSsprProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
-          <Metadata>
-            <Item Key="Operation">SendCode</Item>
-          </Metadata>
-          <InputClaims>
-            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="emailAddress"/>
-          </InputClaims>
-           <OutputClaims>
-            <!-- Required claims -->
-            <OutputClaim ClaimTypeReferenceId="objectId" />
-          </OutputClaims>
-        </TechnicalProfile>
-        <TechnicalProfile Id="AadSspr-VerifyCode">
+         <TechnicalProfile Id="AadSspr-VerifyCode">
           <DisplayName>Verify Code</DisplayName>
           <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AadSsprProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
@@ -390,7 +376,17 @@
             <InputClaim ClaimTypeReferenceId="verificationCode" PartnerClaimType="verificationCode" Required="true"/>
             <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="emailAddress" />
           </InputClaims>
-        </TechnicalProfile>     
+        </TechnicalProfile>  
+         <TechnicalProfile Id="AadSspr-SendCode">
+          <DisplayName>Send Code</DisplayName>
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AadSsprProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Metadata>
+            <Item Key="Operation">SendCode</Item>
+          </Metadata>
+          <InputClaims>
+            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="emailAddress"/>
+          </InputClaims>
+        </TechnicalProfile>   
         <TechnicalProfile Id="AAD-CheckUserExistsUsingEmail">
           <Metadata>
             <Item Key="Operation">Read</Item>
