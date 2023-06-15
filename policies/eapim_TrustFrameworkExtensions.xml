@@ -245,8 +245,7 @@
         <InputClaim ClaimTypeReferenceId="readOnlyEmail" />
        </InputClaims>
         <DisplayClaims>
-          <DisplayClaim ClaimTypeReferenceId="readOnlyEmail"/>
-          <DisplayClaim ClaimTypeReferenceId="email" />
+          <DisplayClaim ClaimTypeReferenceId="readOnlyEmail" />
           <DisplayClaim ClaimTypeReferenceId="verificationCode" ControlClaimType="VerificationCode" Required="true" />
         </DisplayClaims>
         <Actions>
@@ -376,6 +375,10 @@
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="emailAddress"/>
           </InputClaims>
+           <OutputClaims>
+            <!-- Required claims -->
+            <OutputClaim ClaimTypeReferenceId="objectId" />
+          </OutputClaims>
         </TechnicalProfile>
         <TechnicalProfile Id="AadSspr-VerifyCode">
           <DisplayName>Verify Code</DisplayName>
