@@ -242,10 +242,10 @@
       <DisplayControl Id="emailVerificationControl" UserInterfaceControlType="VerificationControl">
        <InputClaims>
         <InputClaim ClaimTypeReferenceId="email" />
-        <InputClaim ClaimTypeReferenceId="readOnlyEmail" />
+        <!-- <InputClaim ClaimTypeReferenceId="readOnlyEmail" /> -->
        </InputClaims>
         <DisplayClaims>
-          <DisplayClaim ClaimTypeReferenceId="readOnlyEmail" />
+          <DisplayClaim ClaimTypeReferenceId="email" />
           <DisplayClaim ClaimTypeReferenceId="verificationCode" ControlClaimType="VerificationCode" Required="true" />
         </DisplayClaims>
         <Actions>
@@ -388,7 +388,7 @@
           </Metadata>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="verificationCode" PartnerClaimType="verificationCode" Required="true"/>
-            <InputClaim ClaimTypeReferenceId="readOnlyEmail" PartnerClaimType="emailAddress" />
+            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="emailAddress" />
           </InputClaims>
         </TechnicalProfile>     
         <TechnicalProfile Id="AAD-CheckUserExistsUsingEmail">
@@ -895,9 +895,9 @@
             <Key Id="issuer_secret" StorageReferenceId="B2C_1A_TokenSigningKeyContainer" />
           </CryptographicKeys>
           <IncludeInSso>false</IncludeInSso>
-          <InputClaimsTransformations>
+          <!-- <InputClaimsTransformations>
             <InputClaimsTransformation ReferenceId="CopyEmailAddress" />
-          </InputClaimsTransformations>
+          </InputClaimsTransformations> -->
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="email" />
           </InputClaims>
@@ -905,7 +905,7 @@
             <DisplayClaim DisplayControlReferenceId="emailVerificationControl" /> 
           </DisplayClaims>
           <OutputClaims>
-            <OutputClaim ClaimTypeReferenceId="readOnlyEmail" />
+            <!-- <OutputClaim ClaimTypeReferenceId="readOnlyEmail" /> -->
             <OutputClaim ClaimTypeReferenceId="objectId" />
             <OutputClaim ClaimTypeReferenceId="email" />      
             <!-- <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
