@@ -892,7 +892,7 @@
             <Item Key="IpAddressClaimReferenceId">IpAddress</Item>
             <Item Key="ContentDefinitionReferenceId">api.localaccountpasswordreset</Item>
             <!-- <Item Key="setting.showCancelButton">false</Item> -->
-            <Item Key="setting.showContinueButton">false</Item>
+            <!-- <Item Key="setting.showContinueButton">false</Item> -->
             <!--<Item Key="UserMessageIfClaimsTransformationBooleanValueIsNotEqual">Your account has been locked. Contact your support person to unlock it, then try again.</Item>-->
           </Metadata>
           <CryptographicKeys>
