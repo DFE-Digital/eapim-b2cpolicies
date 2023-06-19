@@ -893,7 +893,7 @@
             <Item Key="ContentDefinitionReferenceId">api.localaccountpasswordreset</Item>
             <!-- <Item Key="setting.showCancelButton">false</Item> -->
             <!-- <Item Key="setting.showContinueButton">false</Item> -->
-            <!--<Item Key="UserMessageIfClaimsTransformationBooleanValueIsNotEqual">Your account has been locked. Contact your support person to unlock it, then try again.</Item>-->
+            <Item Key="UserMessageIfClaimsTransformationBooleanValueIsNotEqual">No account found with that email address. Please enter the email address you used for your account, or sign-up to create a new account with the email address you entered.</Item>
           </Metadata>
           <CryptographicKeys>
             <Key Id="issuer_secret" StorageReferenceId="B2C_1A_TokenSigningKeyContainer" />
