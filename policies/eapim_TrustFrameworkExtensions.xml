@@ -397,7 +397,7 @@
         <TechnicalProfile Id="AAD-CheckUserExistsUsingEmail">
           <Metadata>
             <Item Key="Operation">Read</Item>
-            <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">false</Item>
+            <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
           </Metadata>
           <IncludeInSso>false</IncludeInSso>
           <InputClaims>
