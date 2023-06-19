@@ -374,7 +374,7 @@
         <LocalizedStrings>
           <LocalizedString ElementType="UxElement" StringId="required_field">This field is required</LocalizedString>
           <LocalizedString ElementType="ClaimType" ElementId="email" StringId="PatternHelpText">Please enter a valid email address</LocalizedString>
-          <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfClaimsTransformationBooleanValueIsNotEqual">No account found with that email address. Please enter the email address you used for your account, or sign-up to create a new account with the email address you entered.</LocalizedString>
+          <LocalizedString ElementType="UxElement" StringId="UserMessageIfClaimsTransformationBooleanValueIsNotEqual">No account found with that email address. Please enter the email address you used for your account, or sign-up to create a new account with the email address you entered.</LocalizedString>
         </LocalizedStrings>
       </LocalizedResources>
     </Localization>
